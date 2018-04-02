@@ -11,7 +11,7 @@ class ProcessSettings(object):
     base64.b64encode(os.urandom(24))
     'ge93CyMABWNHSSwRBWrh/3SItqn1is1l'
     '''
-    SECRETY_KEY = 'ge93CyMABWNHSSwRBWrh/3SItqn1is1l'
+    SECRET_KEY = 'ge93CyMABWNHSSwRBWrh/3SItqn1is1l'
 
     #redis配置
     REDIS_HOST = '127.0.0.1'

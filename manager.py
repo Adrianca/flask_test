@@ -7,14 +7,12 @@ from ihome import create_obj
 app,db = create_obj(ProcessSettings)
 
 #创建迁移命令
-Migrate(db,app)
+Migrate(app,db)
 manager = Manager(app)
 manager.add_command('db',MigrateCommand)
 
-@app.route('/')
-def index():
-    return 'Hello flask!'
 
 if __name__ == '__main__':
+    print app.url_map
     #运行 --> 相当于Django runserver. 都是框架自带的简易服务器
     manager.run()
