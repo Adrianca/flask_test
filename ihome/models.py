@@ -3,6 +3,7 @@
 
 from datetime import datetime
 from ihome import db
+from werkzeug.security import generate_password_hash,check_password_hash
 
 class BaseModel(object):
     """模型基类，为每个模型补充创建时间与更新时间"""
@@ -27,6 +28,19 @@ class User(BaseModel, db.Model):
     # 在一的一方, 添加relationship, 同时添加反向引用
     houses = db.relationship("House", backref="user")  # 用户发布的房屋
     orders = db.relationship("Order", backref="user")  # 用户下的订单
+
+    #设定password方法，加密保存password
+    @property
+    def password(self):
+        raise AttributeError('数据不可读取')
+    @password.setter
+    def password(self, value):
+        self.password_hash = generate_password_hash(value)
+
+    def check_passwd(self,value):
+        return check_password_hash(self.password_hash, value)
+
+
 
 
 class Area(BaseModel, db.Model):
